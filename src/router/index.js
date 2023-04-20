@@ -1,50 +1,78 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import store from '../store'
 
 const routes = [
 
     {
-        path: '/', name: 'Home', component: () => import( '../views/Home.vue'),  
+        path: '/', name: 'Home', component: () => import('../views/Home.vue'), meta: {
+            isAuth: false
+        }
     },
     {
-        path: '/laptop', name: 'Laptop', component: () => import( '../views/Laptop.vue'),   
-    
+        path: '/laptop', name: 'Laptop', component: () => import('../views/Laptop.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/monitor', name: 'monitor', component: () => import( '../views/Monitor.vue')
-    
+        path: '/monitor', name: 'monitor', component: () => import('../views/Monitor.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/avaya', name: 'Avaya', component: () => import( '../views/Avaya.vue')
-    
+        path: '/avaya', name: 'Avaya', component: () => import('../views/Avaya.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/systemUnit', name: 'SystemUnit', component: () => import( '../views/SystemUnit.vue')
-    
+        path: '/systemUnit', name: 'SystemUnit', component: () => import('../views/SystemUnit.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/:patchMatch(.*)*', name: 'NotFound', component: () => import( '../views/NotFound.vue')
-    
+        path: '/:patchMatch(.*)*', name: 'NotFound', component: () => import('../views/NotFound.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/setting', name: 'setting', component: () => import( '../views/Setting.vue')
-    
+        path: '/setting', name: 'setting', component: () => import('../views/Setting.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/login', name: 'login', component: () => import( '../views/Login.vue')
-    
+        path: '/login', name: 'login', beforeEnter: (to, from, next) => {
+            if (store.state.user) next({ name: 'home' })
+            else next();
+        }, component: () => import('../views/Login.vue'), meta: {
+            isAuth: true
+        }
+
     },
     {
-        path: '/addLaptop', name: 'addLaptop', component: () => import( '../addUnits/addLaptop.vue')
-    
+        path: '/addLaptop', name: 'addLaptop', component: () => import('../addUnits/addLaptop.vue'), meta: {
+            isAuth: true
+        }
+
     },
 ]
 
-const router = createRouter ({
+const router = createRouter({
 
     history: createWebHistory(),
     routes
-  
-})
 
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((route) => route.meta.isAuth)) {
+        if (!store.state.user) next({ name: 'login' })
+        else next()
+    }
+
+});
 export default router

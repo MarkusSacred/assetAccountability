@@ -30,7 +30,12 @@
                                             </div>
                                     </div>
                                    
-                                   
+                                    <div class="w-full table">
+                                        <ag-grid-vue  class="ag-theme-alpine w-full h-full"
+                                            :columnDefs="columnDefs"
+                                                :rowData="rowData">
+                                     </ag-grid-vue>
+          </div>
 
                             </div>
         </div>
@@ -41,8 +46,15 @@
 </template>
 
 <script>
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { AgGridVue } from "ag-grid-vue3";
+
 export default {
     name : 'Monitor',
+    components : {
+        AgGridVue
+    },
     data(){
         return {
             bio : '',
@@ -67,7 +79,38 @@ export default {
             this.remarks = '',
             this.newUser = ''
         }
-    }
+    },
+    setup() {
+    return {
+      columnDefs: [
+        { headerName: "Bio/Serial no.", field: "Bio" },
+        { headerName: "Current User", field: "Cu" },
+        { headerName: "Description", field: "Des" },
+        { headerName: "Monitor Code", field: "Mc" },
+        { headerName: "Date Issued", field: "Di" },
+        { headerName: "Serial Number", field: "Sn" },
+        { headerName: "Remarks", field: "remarks" },
+        { headerName: "New User", field: "Nu" },
+       
+      ],
+      rowData: [
+        { Bio: "GCDG5HA086664", Cu: "Mark Arcedas", Des: "AOC 19.5” LED Monitor", Mc: "0179864", Di : "5CG2045M45", Sn : "JACWSI7006"
+          ,remarks : "Deployed", Nu: "Ryan Rinon"
+        },
+        { Bio: "GCDG5HA086664", Cu: "Mark Arcedas", Des: "AOC 19.5” LED Monitor", Mc: "0179864", Di : "5CG2045M45", Sn : "JACWSI7006"
+          ,remarks : "Deployed", Nu: "Ryan Rinon"
+        },
+        { Bio: "GCDG5HA086664", Cu: "Mark Arcedas", Des: "AOC 19.5” LED Monitor", Mc: "0179864", Di : "5CG2045M45", Sn : "JACWSI7006"
+          ,remarks : "Deployed", Nu: "Ryan Rinon"
+        },
+        { Bio: "GCDG5HA086664", Cu: "Mark Arcedas", Des: "AOC 19.5” LED Monitor", Mc: "0179864", Di : "5CG2045M45", Sn : "JACWSI7006"
+          ,remarks : "Deployed", Nu: "Ryan Rinon"
+        },
+        
+      
+      ],
+    };
+  },
 }
 
 
@@ -97,7 +140,7 @@ h1 {
 .content-body{
     filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
     border-radius: 0.5rem;
-    background-color: azure;
+    background-color: #FFFFFF;
     margin-top: 10px;
     min-height: 100vh;
     min-width: 100vh;

@@ -10,11 +10,8 @@
 </template>
 
 <script>
-import Home from './Home.vue'
-
-
-
-
+import router from '../router'
+import store from '../store'
 
 export default{
     
@@ -38,26 +35,17 @@ export default{
             userName: '',
             password : '',
             correct : 'TAMA ANG IMONG LOGIN',
-            pw : 'password'
+            pw : 'password',
+            isAuthenticated : true,
             
         }
     }, methods : {
 
        
        alerting(){
-        if(this.userName != 'admin' && this.password != 'admin'){
-            
+        if(store.state.user){
+            router.push('/home')
            
-            this.userName = ''
-            this.password = ''
-           
-            alert(this.alerts)
-           
-        }  
-
-        else {
-            alert(this.correct)
-            this.$router.push({ name: 'Home' })
         }
 
        }

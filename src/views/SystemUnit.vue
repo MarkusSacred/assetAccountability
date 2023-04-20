@@ -34,7 +34,15 @@
                                                 <button @click="clear()" class="bg-blue-400 rounded-md ... p-[5px] drop-shadow-lg ...">Clear</button>
                                                 <button class="bg-blue-400 rounded-md ... p-[5px] drop-shadow-lg ...">Search</button>
                                             </div>
-                                    </div>
+
+
+                                            <div class="w-full table">
+                                                <ag-grid-vue  class="ag-theme-alpine w-full h-full"
+                                                    :columnDefs="columnDefs"
+                                                        :rowData="rowData">
+                                                </ag-grid-vue>
+                                             </div>
+                                </div>
                                    
                                    
 
@@ -47,8 +55,14 @@
 </template>
 
 <script>
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { AgGridVue } from "ag-grid-vue3";
 export default {
     name : 'SystemUnit',
+    components : {
+        AgGridVue,
+    },
     data(){
         return {
             bio : '',
@@ -82,7 +96,31 @@ export default {
             this.hostName = '',
             this.newUser = ''
         }
-    }
+    },
+    setup() {
+    return {
+      columnDefs: [
+        { headerName: "Bio/Serial no.", field: "Bio" },
+        { headerName: "Description", field: "De" },
+        { headerName: "Work Station", field: "Ws" },
+        { headerName: "Current User", field: "Cu" },
+        { headerName: "Date Issued", field: "Di" },
+        { headerName: "CPU Code", field: "Cc" },
+        { headerName: "Remarks", field: "remarks" },
+        { headerName: "Serial Number", field: "Sn" },
+        { headerName: "OS", field: "OS" },
+        { headerName: "Status", field: "status" },
+        { headerName: "Host Name", field: "Hn" },
+        { headerName: "New User", field: "Nu" },
+      ],
+      rowData: [
+        { Bio: "225", De: "HP Elitedesk 705 G2", Ws: "H05023C81", Cu: "Mark Arcedas", Di : "3/14/2023", Cc : "0174889", Sn: "SGH618RSXF",  OS: "174889", Hn: "JACWS00084",status : "Active" 
+          ,remarks : "Deployed", Nu: "None"
+        },
+
+      ],
+    };
+  },
 }
 
 
@@ -112,7 +150,7 @@ h1 {
 .content-body{
     filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
     border-radius: 0.5rem;
-    background-color: azure;
+    background-color: #FFFFFF;
     margin-top: 10px;
     min-height: 100vh;
     min-width: 100vh;

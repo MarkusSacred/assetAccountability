@@ -12,11 +12,14 @@
 
 
 <script >
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 import Sidebar from './components/Sidebar.vue'
 export default{
   name : 'App',
     components : {
-      Sidebar
+      Sidebar,
+
 },
 
 }
@@ -56,7 +59,7 @@ main, .container {
 flex: 1 1 0;
 padding: 2rem;
 @media (max-width: 	1920px) {
-  padding-left: 6rem;
+  padding-left: 4rem;
 }
 }
 }
