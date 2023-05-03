@@ -247,6 +247,7 @@ export default {
     font-weight: bold;
   }
   button:hover {
+    color: white;
     background-color: var(--dark);
     transition: 0.2s ease-in-out;
   }
