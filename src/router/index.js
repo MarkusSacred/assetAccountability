@@ -68,11 +68,6 @@ const router = createRouter({
 
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.matched.some((route) => route.meta.isAuth)) {
-        if (!store.state.user) next({ name: 'login' })
-        else next()
-    }
 
-});
+
 export default router

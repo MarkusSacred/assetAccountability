@@ -44,7 +44,8 @@ box-sizing: border-box;
 font-family: 'Fira sans', sans-serif;
 }
 body {
-background: var(--light);
+background: var(--light) !important;
+
 }
 button {
 cursor: pointer;
@@ -55,11 +56,17 @@ background: none;
 }
 .app {
 display: flex;
+
 main, .container {
 flex: 1 1 0;
 padding: 2rem;
+
+.container{
+  padding-left: 25rem
+}
+
 @media (max-width: 	1920px) {
-  padding-left: 4rem;
+  padding-left: 5rem;
 }
 }
 }

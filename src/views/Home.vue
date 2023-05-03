@@ -17,7 +17,7 @@
   margin: auto;
   height: 100%;
   width: auto;
-  margin-left: 15rem !important;
+  margin-left: 22rem !important;
     }
 
     p {
